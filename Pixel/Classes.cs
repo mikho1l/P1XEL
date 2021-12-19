@@ -80,7 +80,7 @@ namespace Pixel
         /// </summary>
         public int Sum()
         {
-            //выбрать зал из товаров
+            //выбрать зал из товаро
             return 100;
         }
         /// <summary>
