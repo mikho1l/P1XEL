@@ -81,7 +81,7 @@ namespace Pixel
         public int Sum()
         {
             //выбрать зал из товаро
-            return 100;
+            return 0;
         }
         /// <summary>
         ///  Компаратор для сортировки в DataGrid
