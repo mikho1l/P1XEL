@@ -41,7 +41,7 @@ namespace Pixel
                 foreach (var value in response.Values)
                 {
                     var dt = DateTime.Parse(value[0].ToString());
-                    var check = value.Count > 6 && value[7] != null && value[7].ToString().Length > 5;
+                    var check = value.Count > 7 && value[7] != null && value[7].ToString().Length > 5;
                     if (dt <= To && dt >= From && check)
                     {
                         var v2 = value[2].ToString();

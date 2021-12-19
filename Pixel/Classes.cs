@@ -183,14 +183,72 @@ namespace Pixel
     {
         public string Name { get; set; }
         public int Cost { get; set; }
-        public bool Zal { get; set; }
+        public Tovar(string name, int cost)
+        {
+            Name = name;
+            Cost = cost;
+        }
+        public override string ToString()
+        {
+            return Name + " " + Cost;
+        }
     }
+    public class Prodaza
+    {
+        public Tovar Tovar { get; set; }
+        public string SpOpl { get; set; }
+        public string DateTime { get; set; }
+        //public string Zal { get; set; }
+
+        public Prodaza(Tovar t, string spOPl, string dt)
+        {
+            Tovar = t;
+            SpOpl = spOPl;
+            DateTime = dt;
+            // Time = time;
+        }
+
+        public override string ToString()
+        {
+            return Tovar.Name + " " + Tovar.Cost + DateTime;
+        }
+
+    }
+
     public class Otchet
     {
-        public Admin Admin { get; set; }
-        //что-то зп
-        public int zp { get; set; }
-        public int viruchka { get; set; }
+        public List<Prodaza> AllProdaz;
+        public List<Prodaza> OtchetPoProdazamProductov { get; set; }
+        public List<Prodaza> OtchetPoProdazamZalov { get; set; }
+        public Dictionary<string, int> SposobOpl { get; set; }
+        public int Viruchka { get; set; }
+        public int DayZp { get; set; }
+        public int Rashod { get; set; }
+
+        public Otchet()
+        {
+            OtchetPoProdazamProductov = new List<Prodaza>();
+            OtchetPoProdazamZalov = new List<Prodaza>(); ;
+            SposobOpl = new Dictionary<string, int>();
+            SposobOpl.Add("nal", 0);
+            SposobOpl.Add("per", 0);
+            SposobOpl.Add("evo", 0);
+            DayZp = 0;
+            Rashod = 0;
+        }
+        //public Admin Admin { get; set; }
+        public void UnionProdaz()
+        {
+            AllProdaz = OtchetPoProdazamProductov.Union(OtchetPoProdazamZalov).ToList();
+        }
+        public void RasschetZp(int cloak, int tarif, int inoe)
+        {
+            DayZp = cloak * tarif + inoe;
+        }
+        public void RasschetViruchki()
+        {
+            Viruchka = SposobOpl["per"] + SposobOpl["evo"] + SposobOpl["nal"] - DayZp - Rashod;
+        }
         //список товаров и сумма
     }
     public class DaySalary
