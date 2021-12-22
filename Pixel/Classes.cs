@@ -21,7 +21,7 @@ namespace Pixel
         int row_gogle;
         public string Date
         {
-            get => datetime.Date.ToShortDateString();
+            get => (datetime.Date.ToShortDateString()).Remove(5);
             set
             {
                 var t = datetime.TimeOfDay;
@@ -125,9 +125,18 @@ namespace Pixel
     {
         public string Name { get; set; }
         public string Phone { get; set; }
-        public DateTime LastVisit { get; set; }
-        public DateTime VisitCount { get; set; }
+        public string LastVisit { get; set; }
+        public int VisitCount { get; set; }
+
         public string Comment { get; set; }
+        public Guest()
+        {
+            Name = "Noname";
+            Phone = "";
+            VisitCount = 1;
+            LastVisit=DateTime.Now.ToString();
+            Comment = "-";
+        }
         public override string ToString()
         {
             return Name + " " + Phone;
@@ -141,8 +150,16 @@ namespace Pixel
             return false;
         }
         public static bool operator !=(Guest one, Guest two)
-        {
+        {         
             return !(one.Name == two.Name && one.Phone == two.Phone);
+        }
+        public  bool SerchPhone (Guest one,List<Guest> guests)
+        {
+            foreach (var item in guests)
+            {
+                if (one.Phone == item.Phone) return false;
+            }
+            return true;
         }
     }
     public class Admin

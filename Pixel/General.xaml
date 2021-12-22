@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pixel"
         mc:Ignorable="d"
-        Title="General" Height="704" Width="959">
+        Title="General" Height="704" Width="959" ResizeMode="NoResize">
     <Grid x:Name="Grid_osn">
         <Grid.Background>
 
@@ -31,16 +31,25 @@
                 <ColumnDefinition Width="479*"/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid x:Name="grid1" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="2" Margin="0,119,0,75" AreRowDetailsFrozen="True" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserDeleteRows="False"/>
+            <DataGrid x:Name="grid1" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="2" Margin="0,119,0,75" AreRowDetailsFrozen="True" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserDeleteRows="False" />
             <Button x:Name="B_ras" Content="Рассчитать" HorizontalAlignment="Left" Margin="409,55,0,0" VerticalAlignment="Top" Width="135" Height="23" Grid.ColumnSpan="2"/>
-            <Button x:Name="B_del" Content="х" HorizontalAlignment="Left" Margin="102,55,0,0" VerticalAlignment="Top" Width="31" Height="20" Grid.Column="1" Click="B_del_Click_1"/>
-            <Button x:Name="B_new_b" Content="+" HorizontalAlignment="Left" Margin="345,55,0,0" VerticalAlignment="Top" Width="44" Click="B_new_b_Click_1"/>
+            <Button x:Name="B_del" Content="х" IsEnabled="True" HorizontalAlignment="Left" Margin="102,55,0,0" VerticalAlignment="Top" Width="31" Height="20" Grid.Column="1" Click="B_del_Click_1"/>
+            <Button x:Name="B_new_b" Content="изм" HorizontalAlignment="Left" Margin="345,55,0,0" VerticalAlignment="Top" Width="44" Click="B_new_b_Click_1"/>
             <Button x:Name="Button_DateFrom" Content="Загрузка..." HorizontalAlignment="Left" Margin="388,10,0,435" Width="184" Click="Button_DateFrom_Click" Grid.ColumnSpan="2"/>
             <Calendar x:Name="Calendar" HorizontalAlignment="Left" Margin="335,83,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="185" Visibility="Hidden" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
+            <Grid Name="Preduprezdenie"  Margin="335,102,314,301" Grid.ColumnSpan="2" Visibility="Hidden" Background="#FFFDFAFA">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="142*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Предупреждение:выбранная строка &#xD;&#xA;удалится без возможности восстановления" HorizontalAlignment="Left" VerticalAlignment="Top" Width="270" Height="44" Grid.ColumnSpan="2" Margin="27,0,0,0"/>
+                <Button Content="OK" HorizontalAlignment="Left" Margin="49,44,0,0" VerticalAlignment="Top" Height="21" Width="55" Click="Button_Click_4"/>
+                <Button Content="ОТМЕНА" HorizontalAlignment="Left" Margin="179,44,0,0" VerticalAlignment="Top" Width="55" Click="Button_Click_3"/>
+            </Grid>
 
 
         </Grid>
-        <Grid x:Name="Otchets" Grid.ColumnSpan="4" Background="#FFA27979" Margin="0,41,0,259" Visibility="Visible">
+        <Grid x:Name="Otchets" Grid.ColumnSpan="4" Background="#FFA27979" Margin="0,41,0,259" Visibility="Hidden">
             <Label Content="Отчет за текуший день" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="584" Background="#FFD6BEBE"/>
             <DataGrid x:Name="DataGrid_otchet" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,41,365,129" Background="#FF9C7979"/>
             <Button Content="ЗАКРЫТЬ СМЕНУ" HorizontalAlignment="Left" Margin="599,16,0,0" VerticalAlignment="Top" Width="320" Height="42" FontSize="20" Click="Button_Click_2"/>
@@ -98,18 +107,18 @@
             <Label Content="Продажи за смену:" HorizontalAlignment="Left" Margin="35,0,0,0" VerticalAlignment="Top" Height="60" Width="245" FontSize="22" Grid.ColumnSpan="3"/>
 
             <DataGrid x:Name="DataGrid_prodaza" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,60,0,170" Grid.ColumnSpan="3"  />
-            <Grid x:Name="Grid_SmOpl" Grid.Column="2" Margin="150,115,299,50" Background="#FFA19595" Visibility="Hidden">
+            <Grid x:Name="Grid_SmOpl" Grid.Column="2" Margin="150,115,299,50" Background="#FFA19595" Visibility="Visible">
                 <Label Content="Наличными" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" Width="80"/>
                 <Label Content="Эвотор" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="70"/>
                 <Label Content="Перевод" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="70"/>
                 <TextBox x:Name="TextBox_SmOPl_Nal" HorizontalAlignment="Left" Margin="95,28,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="110" Height="26"/>
                 <TextBox x:Name="TextBox_SmOpl_evo" HorizontalAlignment="Left" Margin="95,73,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="110" Height="26"/>
                 <TextBox x:Name="TextBox_SmOpl_per" HorizontalAlignment="Left" Margin="95,118,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="110" Height="26"/>
-                <Button x:Name="ButtonCloseSmOpl" Content="x" Margin="195,0,0,0" VerticalAlignment="Top" Height="23" Click="ButtonCloseSmOpl_Click"/>
+                <Button x:Name="ButtonCloseSmOpl" Content="x" Margin="195,0,0,182" VerticalAlignment="Bottom" Height="23" Click="ButtonCloseSmOpl_Click"/>
                 <Button Content="Добавить" HorizontalAlignment="Left" Margin="165,168,0,0" VerticalAlignment="Top" Click="Button_AddSmOpl_Click" Visibility="Visible"/>
             </Grid>
         </Grid>
-        <Grid x:Name="Grid_Baza" Grid.ColumnSpan="4" Margin="6,41,0,164" Background="#FFDAB6B6" Visibility="Collapsed">
+        <Grid x:Name="Grid_Baza" Grid.ColumnSpan="4" Margin="6,41,0,164" Background="#FFDAB6B6" Visibility="Visible">
             <Label HorizontalAlignment="Center" VerticalAlignment="Top" Height="43" Width="953" FontWeight="Bold" FontSize="20" Background="#FFF0EBEB" Content="База клиентов"/>
             <DataGrid x:Name="Data_Grid_Baza_Clientov" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,98,34,90"/>
             <Button x:Name="Button_Add_Client" Content="+Клиент" HorizontalAlignment="Center" Margin="0,428,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="Button_Add_Client_Click"/>
@@ -122,7 +131,7 @@
                     </VisualBrush>
                 </TextBox.Background>
             </TextBox>
-            <Button Content="ПОИСК" HorizontalAlignment="Left" Margin="426,48,0,0" VerticalAlignment="Top" RenderTransformOrigin="-9.716,0.754" Height="30" Width="73"/>
+            <Button Content="ПОИСК" HorizontalAlignment="Left" Margin="426,48,0,0" VerticalAlignment="Top" RenderTransformOrigin="-9.716,0.754" Height="30" Width="73" Click="Button_Click_5"/>
             <TextBox x:Name="TextBoxSerchOfName" HorizontalAlignment="Left" Margin="538,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" Height="30" CaretBrush="#FFDDBCBC" RenderTransformOrigin="0.5,0.5" >
                 <TextBox.RenderTransform>
                     <TransformGroup>

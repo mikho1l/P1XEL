@@ -80,6 +80,7 @@ namespace Pixel
             }
             else
             {
+                //не работает, если в другом месяце
                 string range = string.Format($"'{Months[bron.GetDateTime().Month]} {bron.GetDateTime().Year % 100}'!A2:I");
                 SpreadsheetsResource.ValuesResource.GetRequest request = service.Spreadsheets.Values.Get(SpreadSheetId, range);
                 ValueRange response = request.Execute();
@@ -121,7 +122,7 @@ namespace Pixel
             {
                 UserEnteredValue = new ExtendedValue
                 {
-                    StringValue = b.GetDateTime().ToLongDateString()
+                    StringValue = b.Date
                 }
             });
             values.Add(new CellData

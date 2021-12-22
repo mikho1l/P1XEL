@@ -19,22 +19,41 @@ namespace Pixel
     /// </summary>
     public partial class New_bron : Window
     {
-        public New_bron()
+        Bron bron;
+        public New_bron(Bron b)
         {
             InitializeComponent();
-            ComboBox_Zal.Items.Add("Большой");
-            ComboBox_Zal.Items.Add("Средний");
-            ComboBox_Zal.Items.Add("Малый");
+            bron = b;
+            Box_date.Text = bron.GetDateTime().Date.ToShortDateString();
+            TexBox_time_p.Text = bron.StartTime;
+            if (bron.EndTime.Length != 0)
+                TexBox_Time_u.Text = bron.EndTime;
+            Box_guestcount.Text = bron.GuestCount;
+            Box_zal.Text = bron.Zal.ToString();
+            TexBox_Comment.Text = bron.Comment;
+            TexBox_Name.Text = bron.Guest.Name;
+            TexBox_Number.Text = bron.Guest.Phone;
 
-            for (int i = 1; i <= 20; i++)
-            {
-                ComboBox_countPerson.Items.Add(i);
-            }
-            ComboBox_countPerson.Items.Add("20+");
         }
 
         private void Button_add_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                bron.Date = Box_date.Text;
+                bron.StartTime = TexBox_time_p.Text;
+                if (TexBox_Time_u.Text.Length != 0)
+                    bron.EndTime = TexBox_Time_u.Text;
+                bron.GuestCount = Box_guestcount.Text;
+                bron.Guest.Name = TexBox_Name.Text;
+                bron.Guest.Phone = TexBox_Number.Text;
+            }
+            catch
+            {
+                MessageBox.Show("Неверный формат");
+                return;
+            }
+            GoogleAPI.SetDataGoogle(General.service, AddDelChange.Change,ref bron);
             this.Close();
         }
     }

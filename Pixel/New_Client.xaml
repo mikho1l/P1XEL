@@ -29,10 +29,10 @@
         <Label Content="Последний визит" HorizontalAlignment="Center" Margin="0,99,0,0" VerticalAlignment="Top" Width="368" FontSize="16" Height="29" Background="#FFC0D1CB"/>
         <Label Content=" Телефон" HorizontalAlignment="Center" VerticalAlignment="Center" Width="370" FontSize="16" Height="30" RenderTransformOrigin="0.439,0.726" Background="#FFC0D1CB"/>
         <TextBox x:Name="TextBox_number" HorizontalAlignment="Left" Margin="184,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="156" Height="29"/>
-        <Label Content=" Количество визитов" HorizontalAlignment="Center" VerticalAlignment="Top" Width="368" FontSize="16" Height="29" RenderTransformOrigin="0.439,0.726" Background="#FFC0D1CB" Margin="0,201,0,0"/>
-        <ComboBox x:Name="ComboBox_CountVizit" HorizontalAlignment="Left" Margin="240,201,0,0" VerticalAlignment="Top" Width="100" Height="29"/>
+        <Label Content=" Количество визитов" HorizontalAlignment="Center" VerticalAlignment="Top" Width="368" FontSize="16" Height="30" RenderTransformOrigin="0.439,0.726" Background="#FFC0D1CB" Margin="0,204,0,0"/>
         <TextBox x:Name="TexBox_lastVizit" HorizontalAlignment="Left" Margin="184,99,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="156" Height="29"/>
         <TextBox x:Name="TextBox_NameCliient" HorizontalAlignment="Left" Margin="184,44,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="156" Height="32"/>
+        <TextBox x:Name="CountVizitBox" HorizontalAlignment="Left" Margin="262,204,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="76" Height="30"/>
 
     </Grid>
 </Window>

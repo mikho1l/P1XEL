@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace Pixel
 {
@@ -21,11 +23,11 @@ namespace Pixel
     {
         List<Bron> result = new List<Bron>();
         DateTime? DateFilter1, DateFilter2 = null;
-        public List<Guest> guests = new List<Guest>();
+        public static List<Guest> guests = new List<Guest>();
         List<Tovar> tovars = new List<Tovar>();
-
-        Google.Apis.Auth.OAuth2.UserCredential credential;
-        Google.Apis.Sheets.v4.SheetsService service;
+       
+        internal static Google.Apis.Auth.OAuth2.UserCredential credential;
+        internal static Google.Apis.Sheets.v4.SheetsService service;
 
     
 
@@ -68,9 +70,11 @@ namespace Pixel
             ComboBoxProducs.Items.Add("пиво 100");
 
             var now = DateTime.Now;
-           
+            var xml = new XmlSerializer(typeof(List<Guest>));
+            guests = (List<Guest>)xml.Deserialize(new StreamReader("CientBaza.xml"));
+
             //скоро здесь будет выгрузка (метод) из google          
-           
+
             var nowplus6 = now.AddDays(6);
             Button_DateFrom.Content = string.Format("{0} - {1}", now.ToShortDateString(), nowplus6.ToShortDateString());
             credential = GoogleAPI.GetUserCredentials();
@@ -144,7 +148,14 @@ namespace Pixel
 
         private void B_new_b_Click_1(object sender, RoutedEventArgs e)
         {
-            new New_bron().Show();
+            var b = grid1.SelectedItem as Bron;
+            if (b is null)
+            {
+                MessageBox.Show("poka");
+                return;
+            }
+            new New_bron(b).ShowDialog();
+            grid1.Items.Refresh();
         }
 
 
@@ -236,16 +247,14 @@ namespace Pixel
             Otchet.IsEnabled = true;
             Baza.IsEnabled = false;
             Statistic.IsEnabled = true;
-
+            Data_Grid_Baza_Clientov.ItemsSource = guests;
 
         }
 
         private void Button_Add_Client_Click(object sender, RoutedEventArgs e)
         {
-            Guest guest = new Guest();
-            new New_Client(guest).ShowDialog(); // вызываем окно, передавая данные
-                                                // guests.Add(New_Client.Button_Click();
-            guests.Add(guest);
+     
+            new  New_Client().ShowDialog();
             Data_Grid_Baza_Clientov.Items.Refresh();
         }
 
@@ -324,18 +333,25 @@ namespace Pixel
 
         private void B_del_Click_1(object sender, RoutedEventArgs e)
         {
-            Bron bron = grid1.SelectedItem as Bron;
-            Bron emptybron = new Bron { Guest = new Guest { } };
-            emptybron.SetRowGoogle(bron.GetRowGoogle());
-            emptybron.Date = bron.GetDateTime().ToShortDateString();
-            GoogleAPI.SetDataGoogle(service, AddDelChange.Del, ref emptybron);
-            result.Remove(bron);
-            grid1.Items.Refresh();
+            if (grid1.SelectedItem != null)
+            {
+                Preduprezdenie.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MessageBox.Show("строка с бронированием не выбрана");
+            }
+
+
         }
 
         private void ButtonCloseSmOpl_Click(object sender, RoutedEventArgs e)
         {
+            TextBox_SmOpl_evo.Text = TextBox_SmOPl_Nal.Text = TextBox_SmOpl_per.Text = "";
+            ComboBoxProducs.Text = "товар";
+            ComboBoxSposobOpl.Text = "способ оплаты";
             Grid_SmOpl.Visibility = Visibility.Hidden;
+            ComboBoxSposobOpl.IsEnabled = false;
         }
 
 
@@ -415,9 +431,72 @@ namespace Pixel
 
         private void Button_AddDrRashod_Click(object sender, RoutedEventArgs e)
         {
-            otchet.Rashod = int.Parse(TextBox_InoeRashod.Text);
-            otchet.RasschetViruchki();
-            TextBox_Sverka.Text = otchet.Viruchka.ToString();
+            try
+            {
+                otchet.Rashod = int.Parse(TextBox_InoeRashod.Text);
+                otchet.RasschetViruchki();
+                TextBox_Sverka.Text = otchet.Viruchka.ToString();
+            }
+            catch 
+            {
+                MessageBox.Show("невозможное значение");
+                TextBox_InoeRashod.Text = "0";
+            }
+        }
+
+        private void SelectStr(object sender, RoutedEventArgs e)
+        {
+            B_del.IsEnabled = true;
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Preduprezdenie.Visibility = Visibility.Hidden;
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Preduprezdenie.Visibility = Visibility.Hidden;
+                if (grid1.SelectedItem != null)
+                {                 
+                    Bron bron = grid1.SelectedItem as Bron;
+                    Bron emptybron = new Bron { Guest = new Guest { } };
+                    emptybron.SetRowGoogle(bron.GetRowGoogle());
+                    emptybron.Date = bron.GetDateTime().ToShortDateString();
+                    GoogleAPI.SetDataGoogle(service, AddDelChange.Del, ref emptybron);
+                    result.Remove(bron);
+                    grid1.Items.Refresh();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("строка с бронированием не выбрана");
+            }
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            if(TextBoxSerchOfName.Text.Length == 0 && TextBoxSerchOfNumber.Text.Length == 0)
+            {
+                Data_Grid_Baza_Clientov.ItemsSource = guests;
+                return;
+            }
+            List<Guest> serchClient = new List<Guest>();
+            if (TextBoxSerchOfNumber.Text != "" && New_Client.IsAllDigits(TextBoxSerchOfNumber.Text) && TextBoxSerchOfName.Text != "")
+            {
+             serchClient= guests.FindAll(x => x.Name.Contains(TextBoxSerchOfName.Text.ToUpper()) && x.Phone.Contains(TextBoxSerchOfNumber.Text)).ToList();
+            }
+            else if (TextBoxSerchOfNumber.Text != "" && New_Client.IsAllDigits(TextBoxSerchOfNumber.Text))
+            {
+             serchClient=  guests.FindAll(x => x.Phone.Contains(TextBoxSerchOfNumber.Text)).ToList();
+            }
+            else if (TextBoxSerchOfName.Text != "")
+            {
+              serchClient=  guests.FindAll(x => x.Name.Contains( TextBoxSerchOfName.Text.ToUpper())).ToList() ;
+            }
+            Data_Grid_Baza_Clientov.ItemsSource = serchClient;
         }
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)

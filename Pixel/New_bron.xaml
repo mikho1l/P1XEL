@@ -16,22 +16,11 @@
             <RowDefinition Height="15*"/>
             <RowDefinition Height="205*"/>
         </Grid.RowDefinitions>
-        <Label Content=" Новая бронь" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="29" Width="670" Background="#FFD18282" FontSize="16" Grid.ColumnSpan="2"/>
+        <Label Content=" Изменение брони" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="29" Width="670" Background="#FFD18282" FontSize="16" Grid.ColumnSpan="2"/>
         <Button x:Name="Button_add" Content="Добавить" HorizontalAlignment="Left" Margin="475,145,0,0" VerticalAlignment="Top" Height="25" Width="120" Click="Button_add_Click" Grid.Row="2" FontSize="16" Grid.Column="1"/>
-        <ComboBox Text="Зал"  x:Name="ComboBox_Zal" HorizontalAlignment="Left" Margin="405,64,0,0" VerticalAlignment="Top" Width="160" IsEditable="True" OpacityMask="#FFDF9696" Background="#FFF08D8D" Height="37" FontSize="16" Grid.Column="1">
-            <ComboBox.BorderBrush>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black"/>
-                    <GradientStop Color="#FFE27C7C" Offset="1"/>
-                </LinearGradientBrush>
-            </ComboBox.BorderBrush>
-        </ComboBox>
-        <ComboBox x:Name="ComboBox_countPerson" Text="Количество гостей" HorizontalAlignment="Left" Margin="405,101,0,0" VerticalAlignment="Top" Width="160" IsEditable="True" FontSize="16" Height="37" Grid.Column="1">
-            <CalendarDayButton/>
-        </ComboBox>
         <Label Content="  Контакная информация" HorizontalAlignment="Left" Margin="-10,169,0,0" VerticalAlignment="Top" Width="660" OpacityMask="#FFCB8787" Background="#FFD18282" FontSize="16" Height="35" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
-        <Label Content="Дата" HorizontalAlignment="Left" Margin="5,64,0,0" VerticalAlignment="Top" Width="115" Background="#FFF0D4D4" FontSize="16" Height="74" Grid.Column="1"/>
-        <Label Content="время прихода" HorizontalAlignment="Left" Margin="120,64,0,0" VerticalAlignment="Top" Width="145" Background="#FFF0D4D4" FontSize="16" Height="74" Grid.Column="1"/>
+        <Label Content="Дата" HorizontalAlignment="Left" Margin="5,54,0,0" VerticalAlignment="Top" Width="115" Background="#FFF0D4D4" FontSize="16" Height="84" Grid.Column="1"/>
+        <Label Content="время прихода" HorizontalAlignment="Left" Margin="120,54,0,0" VerticalAlignment="Top" Width="145" Background="#FFF0D4D4" FontSize="16" Height="84" Grid.Column="1"/>
         <TextBox x:Name="TexBox_time_p" HorizontalAlignment="Left" Margin="122,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" RenderTransformOrigin="0.5,0.5" Height="26" FontSize="16" Grid.Column="1">
             <TextBox.RenderTransform>
                 <TransformGroup>
@@ -42,7 +31,7 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <Label Content="время ухода" HorizontalAlignment="Left" Margin="265,64,0,0" VerticalAlignment="Top" Width="140" Background="#FFF0D4D4" FontSize="16" Height="74" Grid.Column="1"/>
+        <Label Content="время ухода" HorizontalAlignment="Left" Margin="265,54,0,0" VerticalAlignment="Top" Width="359" Background="#FFF0D4D4" FontSize="16" Height="84" Grid.Column="1"/>
         <TextBox x:Name="TexBox_Time_u" HorizontalAlignment="Left" Margin="259,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" RenderTransformOrigin="0.5,0.5" Height="24" FontSize="16" Grid.Column="1">
             <TextBox.RenderTransform>
                 <TransformGroup>
@@ -76,7 +65,7 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBox x:Name="TexBox_time_p_Copy" HorizontalAlignment="Left" Margin="8,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.5,0.5" Height="26" FontSize="16" Grid.Column="1">
+        <TextBox x:Name="Box_date" HorizontalAlignment="Left" Margin="8,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="108" RenderTransformOrigin="0.5,0.5" Height="26" FontSize="16" Grid.Column="1">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -87,6 +76,10 @@
             </TextBox.RenderTransform>
         </TextBox>
         <TextBox   x:Name="TexBox_Name" HorizontalAlignment="Left" Margin="10,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="110" Height="22" Grid.Row="2" FontSize="16" Grid.Column="1"/>
+        <TextBox x:Name="Box_zal" Grid.Column="1" HorizontalAlignment="Left" Margin="457,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="Box_guestcount" Grid.Column="1" HorizontalAlignment="Left" Margin="457,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Grid.Column="1" Content="Зал" HorizontalAlignment="Left" Margin="457,54,0,0" VerticalAlignment="Top" Height="24" Width="120"/>
+        <Label Grid.Column="1" Content="Количество гостей" HorizontalAlignment="Left" Margin="457,96,0,0" VerticalAlignment="Top" Height="23" Width="120"/>
 
     </Grid>
 </Window>
