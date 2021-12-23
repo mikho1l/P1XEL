@@ -24,7 +24,7 @@
                     </TextBox.RenderTransform>
                 </TextBox>
                 <Label Content="время ухода" HorizontalAlignment="Left" Margin="280,54,0,0" VerticalAlignment="Top" Width="359" Background="#FFF0D4D4" FontSize="16" Height="84"/>
-                <TextBox x:Name="TexBox_Time_u" HorizontalAlignment="Left" Margin="274,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" RenderTransformOrigin="0.5,0.5" Height="24" FontSize="16">
+                <TextBox x:Name="TexBox_Time_u" HorizontalAlignment="Left" Margin="274,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" RenderTransformOrigin="0.5,0.5" Height="24" FontSize="16" TextChanged="TexBox_Time_u_TextChanged">
                     <TextBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -77,12 +77,12 @@
                 <Label Content="ПО" HorizontalAlignment="Left" Margin="280,247,0,0" VerticalAlignment="Top" Width="118"/>
                 <Label Content="Скидка" HorizontalAlignment="Left" Margin="418,247,0,0" VerticalAlignment="Top" Width="97"/>
                 <Label Content="Штраф" HorizontalAlignment="Left" Margin="532,247,0,0" VerticalAlignment="Top" Width="107"/>
-                <TextBox HorizontalAlignment="Left" Margin="29,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="106" TextChanged="TextBox_TextChanged"/>
-                <TextBox HorizontalAlignment="Left" Margin="144,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="106"/>
-                <TextBox HorizontalAlignment="Left" Margin="261,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="116"/>
-                <TextBox HorizontalAlignment="Left" Margin="382,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="116"/>
-                <TextBox HorizontalAlignment="Left" Margin="509,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="116"/>
-                <TextBox HorizontalAlignment="Left" Margin="345,366,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" Height="25" Background="#FFF9E6E6"/>
+                <TextBox x:Name="box_r_hr" HorizontalAlignment="Left" Margin="29,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="106" TextChanged="TextBox_TextChanged"/>
+                <TextBox x:Name="box_hr" HorizontalAlignment="Left" Margin="144,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="106" TextChanged="box_hr_TextChanged"/>
+                <TextBox x:Name="box_po" HorizontalAlignment="Left" Margin="261,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="116" TextChanged="box_po_TextChanged"/>
+                <TextBox x:Name="box_skidka" HorizontalAlignment="Left" Margin="382,293,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="116" TextChanged="box_skidka_TextChanged"/>
+                <TextBox x:Name="box_fine" HorizontalAlignment="Left" Margin="509,293,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="116" TextChanged="box_fine_TextChanged"/>
+                <TextBox x:Name="TextBox_Sum" HorizontalAlignment="Left" Margin="345,366,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="132" Height="25" Background="#FFF9E6E6" IsEnabled="False"/>
                 <ComboBox Name="ComboBoxSposobOpl" Text="Способ оплаты" HorizontalAlignment="Left" Margin="20,355,0,0" VerticalAlignment="Top" Width="221">
                     <Button Content="Наличные"/>
                     <Button Content="Эвотор"/>

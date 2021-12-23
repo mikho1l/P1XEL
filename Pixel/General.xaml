@@ -49,7 +49,7 @@
 
 
         </Grid>
-        <Grid x:Name="Otchets" Grid.ColumnSpan="4" Background="#FFA27979" Margin="0,41,0,259" Visibility="Hidden">
+        <Grid x:Name="Otchets" Grid.ColumnSpan="4" Background="#FFA27979" Margin="0,41,0,259" Visibility="Visible">
             <Label Content="Отчет за текуший день" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="584" Background="#FFD6BEBE"/>
             <DataGrid x:Name="DataGrid_otchet" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,41,365,129" Background="#FF9C7979"/>
             <Button Content="ЗАКРЫТЬ СМЕНУ" HorizontalAlignment="Left" Margin="599,16,0,0" VerticalAlignment="Top" Width="320" Height="42" FontSize="20" Click="Button_Click_2"/>
@@ -71,7 +71,7 @@
                 <TextBox x:Name="TextBox_Sverka_Per" HorizontalAlignment="Left" Margin="155,156,0,0" TextWrapping="Wrap" Text="" IsReadOnly="True" VerticalAlignment="Top" Width="127" Height="25" Grid.Column="1"/>
                 <TextBox x:Name="TextBox_Sverka" HorizontalAlignment="Left" Margin="157,211,0,0" TextWrapping="Wrap" Text="" IsReadOnly="True" VerticalAlignment="Top" Width="120" Height="25" Grid.Column="1"/>
                 <Label Content="ИТОГО" HorizontalAlignment="Left" Margin="40,211,0,0" VerticalAlignment="Top" Width="90" Height="25" Grid.Column="1"/>
-                <Button Content="Закрыть смену" HorizontalAlignment="Left" Margin="65,279,0,0" VerticalAlignment="Top" Width="210" Background="#FF966B6B" Grid.Column="1" Height="23" />
+                <Button Content="Закрыть смену" HorizontalAlignment="Left" Margin="65,279,0,0" VerticalAlignment="Top" Width="210" Background="#FF966B6B" Grid.Column="1" Height="23" Click="Button_Click_6" />
                 <Label Content="Количество часов" HorizontalAlignment="Left" Margin="27,88,0,0" VerticalAlignment="Top" Width="125"/>
                 <Label Content="руб/час" HorizontalAlignment="Left" Margin="170,88,0,0" VerticalAlignment="Top" Width="60"/>
                 <Label Content="x" HorizontalAlignment="Left" Margin="144,114,0,0" VerticalAlignment="Top" Height="34"/>
@@ -118,7 +118,7 @@
                 <Button Content="Добавить" HorizontalAlignment="Left" Margin="165,168,0,0" VerticalAlignment="Top" Click="Button_AddSmOpl_Click" Visibility="Visible"/>
             </Grid>
         </Grid>
-        <Grid x:Name="Grid_Baza" Grid.ColumnSpan="4" Margin="6,41,0,164" Background="#FFDAB6B6" Visibility="Visible">
+        <Grid x:Name="Grid_Baza" Grid.ColumnSpan="4" Margin="6,41,0,164" Background="#FFDAB6B6" Visibility="Hidden">
             <Label HorizontalAlignment="Center" VerticalAlignment="Top" Height="43" Width="953" FontWeight="Bold" FontSize="20" Background="#FFF0EBEB" Content="База клиентов"/>
             <DataGrid x:Name="Data_Grid_Baza_Clientov" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,98,34,90"/>
             <Button x:Name="Button_Add_Client" Content="+Клиент" HorizontalAlignment="Center" Margin="0,428,0,0" VerticalAlignment="Top" Width="100" Height="30" Click="Button_Add_Client_Click"/>

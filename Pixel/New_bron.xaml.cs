@@ -54,7 +54,7 @@ namespace Pixel
                 return;
             }
             GoogleAPI.SetDataGoogle(General.service, AddDelChange.Change,ref bron);
-            this.Close();
+            Close();
         }
     }
 }

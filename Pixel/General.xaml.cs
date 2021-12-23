@@ -32,7 +32,7 @@ namespace Pixel
     
 
         public static List<Prodaza> prodazZal = new List<Prodaza>();
-        public Otchet otchet = new Otchet();
+        public static Otchet otchet = new Otchet();
 
 
         
@@ -329,6 +329,7 @@ namespace Pixel
             Button_Prodaza.IsEnabled = true;
             Statistic.IsEnabled = true;
 
+            
         }
 
         private void B_del_Click_1(object sender, RoutedEventArgs e)
@@ -392,6 +393,8 @@ namespace Pixel
             TextBox_Sverka_Per.Text = otchet.SposobOpl["per"].ToString();
             otchet.RasschetViruchki();
             TextBox_Sverka.Text = otchet.Viruchka.ToString();
+            //тут всё досчитать и занести, если не сделано
+
         }
 
         private void Button_Click_RaschetZp(object sender, RoutedEventArgs e)
@@ -497,6 +500,11 @@ namespace Pixel
               serchClient=  guests.FindAll(x => x.Name.Contains( TextBoxSerchOfName.Text.ToUpper())).ToList() ;
             }
             Data_Grid_Baza_Clientov.ItemsSource = serchClient;
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
