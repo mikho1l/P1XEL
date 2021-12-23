@@ -39,7 +39,7 @@ namespace Pixel
                 MessageBox.Show("пока");
                 return;
             }
-            new General().Show();
+            new General(ComboBox_Login.SelectedItem.ToString()).ShowDialog();
             StartWindow.Close();
         }
     }

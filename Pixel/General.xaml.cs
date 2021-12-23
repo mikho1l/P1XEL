@@ -36,38 +36,14 @@ namespace Pixel
 
 
         
-        public General()
+        public General(string s)
         {
             InitializeComponent();
             //кнопки
             Grid_Add_Product.Visibility = Visibility.Hidden;
-            //Panel_Opl.Visibility = Visibility.Hidden;
-            ComboBox_month.Text = "период";
-            ComboBoxSposobOpl.Items.Add("Наличные");
-            ComboBoxSposobOpl.Items.Add("Эвотор");
-            ComboBoxSposobOpl.Items.Add("Перевод");
-            ComboBoxSposobOpl.Items.Add("Смешанная оплата");
-
-            ComboBox_month.Items.Add("все время");
-            ComboBox_month.Items.Add("Январь");
-            ComboBox_month.Items.Add("Февраль");
-            ComboBox_month.Items.Add("Март");
-            ComboBox_month.Items.Add("Апрель");
-            ComboBox_month.Items.Add("Май");
-            ComboBox_month.Items.Add("Июнь");
-            ComboBox_month.Items.Add("Июль");
-            ComboBox_month.Items.Add("Август");
-            ComboBox_month.Items.Add("Сентябрь");
-            ComboBox_month.Items.Add("Октябрь");
-            ComboBox_month.Items.Add("Ноябрь");
-            ComboBox_month.Items.Add("Деабрь");
-
-            ComboBox_pos.Items.Add("Залы");
-            ComboBox_pos.Items.Add("Товары");
-            ComboBox_pos.Items.Add("Итоги за день");
 
             ComboBoxProducs.Items.Add("пиво 100");
-
+            NameAdmin.Content = s;
             var now = DateTime.Now;
             var xml = new XmlSerializer(typeof(List<Guest>));
             guests = (List<Guest>)xml.Deserialize(new StreamReader("CientBaza.xml"));
@@ -316,6 +292,8 @@ namespace Pixel
         private void Otchet_Click(object sender, RoutedEventArgs e)
         {
             //
+            DataGrid_otchet.ItemsSource = otchet.AllProdaz;
+            DataGrid_otchet.Items.Refresh();
             Otchets.Visibility = Visibility.Visible;
             Grid_Statistic.Visibility = Visibility.Hidden;
             Grid_Calend.Visibility = Visibility.Hidden;
@@ -515,6 +493,7 @@ namespace Pixel
             }
             new Rasschet(b).ShowDialog();
             grid1.Items.Refresh();
+            DataGrid_otchet.Items.Refresh();
         }
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)

@@ -48,8 +48,8 @@ namespace Pixel
         {
             try
             {
-                float sum = (int.Parse(box_po.Text) + (float.Parse(box_hr.Text) * int.Parse(box_r_hr.Text))) * (100 - int.Parse(box_skidka.Text)) / 100
-                    - int.Parse(box_fine.Text);
+                float sum = (int.Parse(box_fine.Text) + (float.Parse(box_hr.Text) * int.Parse(box_r_hr.Text))) * (100 - int.Parse(box_skidka.Text)) / 100
+                    - int.Parse(box_po.Text);
                 TextBox_Sum.Text = sum.ToString();
             }
             catch { }
@@ -86,8 +86,14 @@ namespace Pixel
             xml.Serialize(sw, list);
             sw.Close();
             General.result.Remove(bron);
-            General.otchet.OtchetPoProdazamZalov.Add(new Prodaza(new Tovar(bron.Zal.ToString(), Sum), ComboBoxSposobOpl.Text,
+             Tovar t = new Tovar(bron.Zal.ToString(), Sum);
+            var d = ComboBoxSposobOpl.Text;
+            if (General.otchet.SposobOpl.ContainsKey("evo") && d == "Эвотор") General.otchet.SposobOpl["evo"] += t.Cost;
+            if (General.otchet.SposobOpl.ContainsKey("nal") && d == "Наличные") General.otchet.SposobOpl["nal"] += t.Cost;
+            if (General.otchet.SposobOpl.ContainsKey("per") && d == "Перевод") General.otchet.SposobOpl["per"] += t.Cost;
+            General.otchet.OtchetPoProdazamZalov.Add(new Prodaza(t, ComboBoxSposobOpl.Text,
                 DateTime.Now.ToString()));
+            General.otchet.UnionProdaz();
 
             Close();
         }

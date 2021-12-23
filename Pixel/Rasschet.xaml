@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pixel"
         mc:Ignorable="d"
-        Title="Rasschet" Height="450" Width="800">
-    <Grid Margin="0,0,30,0">
+        Title="Rasschet" Height="474" Width="644">
+    <Grid Margin="0,0,59,0">
         <Grid Margin="0,0,30,0">
-            <Grid Margin="0,-10,-56,10">
+            <Grid Margin="0,-10,-90,10">
                 <Label Content="Рассчитать" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="29" Width="639" Background="#FFD18282" FontSize="16"/>
                 <Button x:Name="Button_add" Content="Оплачено" HorizontalAlignment="Left" Margin="519,388,0,0" VerticalAlignment="Top" Height="25" Width="120" Click="Button_add_Click" FontSize="16"/>
                 <Label Content="Дата" HorizontalAlignment="Left" Margin="20,54,0,0" VerticalAlignment="Top" Width="115" Background="#FFF0D4D4" FontSize="16" Height="84"/>
