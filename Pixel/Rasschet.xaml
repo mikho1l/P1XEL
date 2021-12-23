@@ -13,7 +13,7 @@
                 <Button x:Name="Button_add" Content="Оплачено" HorizontalAlignment="Left" Margin="519,388,0,0" VerticalAlignment="Top" Height="25" Width="120" Click="Button_add_Click" FontSize="16"/>
                 <Label Content="Дата" HorizontalAlignment="Left" Margin="20,54,0,0" VerticalAlignment="Top" Width="115" Background="#FFF0D4D4" FontSize="16" Height="84"/>
                 <Label Content="время прихода" HorizontalAlignment="Left" Margin="135,54,0,0" VerticalAlignment="Top" Width="145" Background="#FFF0D4D4" FontSize="16" Height="84"/>
-                <TextBox x:Name="TexBox_time_p" HorizontalAlignment="Left" Margin="137,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" RenderTransformOrigin="0.5,0.5" Height="26" FontSize="16">
+                <TextBox x:Name="TexBox_time_p" HorizontalAlignment="Left" Margin="137,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" RenderTransformOrigin="0.5,0.5" Height="26" FontSize="16" TextChanged="TexBox_time_p_TextChanged">
                     <TextBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>

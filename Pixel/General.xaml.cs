@@ -21,7 +21,7 @@ namespace Pixel
     /// </summary>
     public partial class General : Window
     {
-        List<Bron> result = new List<Bron>();
+        public static List<Bron> result = new List<Bron>();
         DateTime? DateFilter1, DateFilter2 = null;
         public static List<Guest> guests = new List<Guest>();
         List<Tovar> tovars = new List<Tovar>();
@@ -66,14 +66,12 @@ namespace Pixel
             ComboBox_pos.Items.Add("Товары");
             ComboBox_pos.Items.Add("Итоги за день");
 
-            //Govno для проверки
             ComboBoxProducs.Items.Add("пиво 100");
 
             var now = DateTime.Now;
             var xml = new XmlSerializer(typeof(List<Guest>));
             guests = (List<Guest>)xml.Deserialize(new StreamReader("CientBaza.xml"));
-
-            //скоро здесь будет выгрузка (метод) из google          
+    
 
             var nowplus6 = now.AddDays(6);
             Button_DateFrom.Content = string.Format("{0} - {1}", now.ToShortDateString(), nowplus6.ToShortDateString());
@@ -505,6 +503,18 @@ namespace Pixel
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void B_ras_Click(object sender, RoutedEventArgs e)
+        {
+            var b = grid1.SelectedItem as Bron;
+            if (b is null)
+            {
+                MessageBox.Show("строка не выбрана");
+                return;
+            }
+            new Rasschet(b).ShowDialog();
+            grid1.Items.Refresh();
         }
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)

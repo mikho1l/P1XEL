@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using System.Xml.Serialization;
 
 namespace Pixel
 {
@@ -25,10 +26,18 @@ namespace Pixel
             set
             {
                 var t = datetime.TimeOfDay;
-                datetime = DateTime.Parse($"{value} {t}");
+                try
+                {
+                    datetime = DateTime.Parse($"{value} {t}");
+                }
+                catch
+                {
+                    datetime = DateTime.Parse($"{value}.{DateTime.Now.Year} {t}");
+                }
             }
         }
         public Zal Zal { get; set; }
+        [XmlIgnore]
         public string DayWeek
         {
             get

@@ -35,7 +35,11 @@ namespace Pixel
             TexBox_Comment.Text = bron.Comment;
             TexBox_Name.Text = bron.Guest.Name;
             TexBox_Number.Text = bron.Guest.Phone;
-            box_hr.Text = bron.CountofHrs().ToString();
+            try
+            {
+                box_hr.Text = bron.CountofHrs().ToString();
+            }
+            catch { }
             box_po.Text = bron.PredOpl;
         }
 
@@ -48,7 +52,7 @@ namespace Pixel
                     - int.Parse(box_fine.Text);
                 TextBox_Sum.Text = sum.ToString();
             }
-            catch { TextBox_Sum.Text = ""; }
+            catch { }
         }
 
         private void Button_add_Click(object sender, RoutedEventArgs e)
@@ -67,12 +71,22 @@ namespace Pixel
                 MessageBox.Show("Неверный формат");
                 return;
             }
+            int Sum;
+            if (!int.TryParse(TextBox_Sum.Text,out Sum))
+            {
+                MessageBox.Show("Не все данные введены корректно");
+                return;
+            }
             var xml = new XmlSerializer(typeof(List<Bron>));
-            var list = (List<Bron>)xml.Deserialize(new StreamReader("archive.xml"));
+            var sr = new StreamReader("archive.xml");
+            var list = (List<Bron>)xml.Deserialize(sr);
+            sr.Close();
             list.Add(bron);
-            xml.Serialize(new StreamWriter("archive.xml"), list);
-
-            General.otchet.OtchetPoProdazamZalov.Add(new Prodaza(new Tovar(bron.Zal.ToString(), int.Parse(TextBox_Sum.Text)), ComboBoxSposobOpl.Text,
+            var sw = new StreamWriter("archive.xml");
+            xml.Serialize(sw, list);
+            sw.Close();
+            General.result.Remove(bron);
+            General.otchet.OtchetPoProdazamZalov.Add(new Prodaza(new Tovar(bron.Zal.ToString(), Sum), ComboBoxSposobOpl.Text,
                 DateTime.Now.ToString()));
 
             Close();
@@ -104,7 +118,28 @@ namespace Pixel
 
         private void TexBox_Time_u_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+            try
+            {
+                bron.EndTime = TexBox_Time_u.Text;
+                box_hr.Text = bron.CountofHrs().ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Неверный формат времени ухода");
+            }
+        }
+
+        private void TexBox_time_p_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                bron.StartTime = TexBox_time_p.Text;
+                box_hr.Text = bron.CountofHrs().ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Неверный формат времени ухода");
+            }
         }
     }
 }
